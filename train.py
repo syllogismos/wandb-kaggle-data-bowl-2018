@@ -169,7 +169,7 @@ class log_images_per_step(Callback):
         # print(y_pred_t.shape)
         wandb.log({"examples": [wandb.Image(x, caption="x"),
                                 wandb.Image(y, caption="y"),
-                                wandb.Image(y_pred_t, caption="pred")]})
+                                wandb.Image(y_pred_t, caption="pred")]}, commit=False)
         # wandb.log({"examples": []})
         # wandb.log({"examples": []})
 
