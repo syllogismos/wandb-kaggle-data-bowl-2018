@@ -1,0 +1,4 @@
+[default]
+entity: syllogismos
+project: kaggle-data-science-bowl-2018
+base_url: https://api.wandb.ai
