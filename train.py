@@ -38,9 +38,13 @@ TRAIN_PATH = './data/stage1_train/'
 TEST_PATH = './data/stage1_test/'
 
 warnings.filterwarnings('ignore', category=UserWarning, module='skimage')
-seed = 42
+seed = 14
 random.seed = seed
 np.random.seed = seed
+wandb.config.seed = seed
+wandb.config.IMG_WIDTH = IMG_WIDTH
+wandb.config.IMG_HEIGHT = IMG_HEIGHT
+wandb.config.IMG_CHANNELS = IMG_CHANNELS
 
 # Get train and test IDs
 train_ids = next(os.walk(TRAIN_PATH))[1]
@@ -144,10 +148,14 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=[mean_iou])
 model.summary()
 
 
-
+wandb.config.val_split = 0.1
+wandb.config.batch_size = 10
+wandb.config.epochs = 20
+wandb.config.patience = 5
+wandb.config.verbose = 1
 print("Training")
 # Fit model
-earlystopper = EarlyStopping(patience=5, verbose=1)
+earlystopper = EarlyStopping(patience=wandb.config.patience, verbose=wandb.config.verbose)
 checkpointer = ModelCheckpoint(os.path.join(wandb.run.dir, 'model-dsbowl2018-1.h5'), verbose=1, save_best_only=True)
-results = model.fit(X_train, Y_train, validation_split=0.1, batch_size=8, epochs=30, 
+results = model.fit(X_train, Y_train, validation_split=wandb.config.val_split, batch_size=wandb.config.batch_size, epochs=wandb.config.epochs, 
                     callbacks=[earlystopper, checkpointer, WandbCallback()])
