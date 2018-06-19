@@ -136,3 +136,30 @@ wandb:
 wandb: Verifying uploaded files... verified!
 wandb: Synced https://app.wandb.ai/syllogismos/kaggle-data-science-bowl-2018/runs/ym4us3xm
 ```
+
+
+```
+wandb: Waiting for wandb process to finish, PID 41903
+wandb: Program ended.
+wandb: Run summary:
+wandb:   val_mean_iou 0.6454686869436236
+wandb:       mean_iou 0.6402667218179845
+wandb:           loss 0.08255669992312073
+wandb:       val_loss 0.0759297464209706
+wandb: Run history:
+wandb:   val_mean_iou ▁▁▁▁▁▂▂▂▃▃▄▄▅▅▆▆▇▇██
+wandb:       mean_iou ▁▁▁▁▂▂▂▂▃▃▄▄▅▅▆▆▇▇██
+wandb:          epoch ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb:           loss █▅▃▃▃▃▂▂▂▂▂▂▁▁▁▁▁▁▁▁
+wandb:       val_loss █▅▄▄▃▃▃▃▃▂▂▂▁▁▁▁▁▁▁▁
+wandb: Waiting for final file modifications.
+wandb: Syncing files in wandb/run-20180619_164615-7om1gj15:
+wandb:   config.yaml
+wandb:   wandb-metadata.json
+wandb:   wandb-debug.log
+wandb:   model-dsbowl2018-1.h5
+wandb:   model-best.h5
+wandb:
+wandb: Verifying uploaded files... verified!
+wandb: Synced https://app.wandb.ai/syllogismos/kaggle-data-science-bowl-2018/runs/7om1gj15
+```

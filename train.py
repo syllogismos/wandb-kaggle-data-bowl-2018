@@ -20,9 +20,9 @@ from keras.layers.core import Lambda
 from keras.layers.convolutional import Conv2D, Conv2DTranspose
 from keras.layers.pooling import MaxPooling2D
 from keras.layers.merge import concatenate
-from keras.callbacks import EarlyStopping, ModelCheckpoint
+from keras.callbacks import EarlyStopping, ModelCheckpoint, Callback
 from keras import backend as K
-
+import pdb
 import tensorflow as tf
 
 import wandb
@@ -120,17 +120,17 @@ p4 = MaxPooling2D(pool_size=(2, 2)) (c4)
 
 c5 = Conv2D(128, (3, 3), activation='relu', padding='same') (p4)
 c5 = Conv2D(128, (3, 3), activation='relu', padding='same')(c5)
-p5 = MaxPooling2D(pool_size=(2, 2)) (c5)
+# p5 = MaxPooling2D(pool_size=(2, 2)) (c5)
 
-cx = Conv2D(256, (3, 3), activation='relu', padding='same')(p5)
-cx = Conv2D(256, (3, 3), activation='relu', padding='same')(cx)
+# cx = Conv2D(256, (3, 3), activation='relu', padding='same')(p5)
+# cx = Conv2D(256, (3, 3), activation='relu', padding='same')(cx)
 
-ux = Conv2DTranspose(128, (2, 2), strides=(2, 2), padding='same')(cx)
-ux = concatenate([ux, c5])
-cxx = Conv2D(128, (3, 3), activation='relu', padding='same')(ux)
-cxx = Conv2D(128, (3, 3), activation='relu', padding='same')(cxx)
+# ux = Conv2DTranspose(128, (2, 2), strides=(2, 2), padding='same')(cx)
+# ux = concatenate([ux, c5])
+# cxx = Conv2D(128, (3, 3), activation='relu', padding='same')(ux)
+# cxx = Conv2D(128, (3, 3), activation='relu', padding='same')(cxx)
 
-u6 = Conv2DTranspose(64, (2, 2), strides=(2, 2), padding='same') (cxx)
+u6 = Conv2DTranspose(64, (2, 2), strides=(2, 2), padding='same') (c5)
 u6 = concatenate([u6, c4])
 c6 = Conv2D(64, (3, 3), activation='relu', padding='same') (u6)
 c6 = Conv2D(64, (3, 3), activation='relu', padding='same') (c6)
@@ -156,6 +156,25 @@ model = Model(inputs=[inputs], outputs=[outputs])
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=[mean_iou])
 model.summary()
 
+train_id = 5
+class log_images_per_step(Callback):
+    def on_epoch_end(self, epoch, logs={}):
+        x = X_train[train_id]
+        # print(x.shape)
+        y = Y_train[train_id].astype(np.uint8)
+        # print(y.shape)
+        y_pred = self.model.predict(x[np.newaxis,:])
+        # print(y_pred.shape)
+        y_pred_t=(y_pred > 0.5).astype(np.uint8)
+        # print(y_pred_t.shape)
+        wandb.log({"examples": [wandb.Image(x, caption="x"),
+                                wandb.Image(y, caption="y"),
+                                wandb.Image(y_pred_t, caption="pred")]})
+        # wandb.log({"examples": []})
+        # wandb.log({"examples": []})
+
+# pdb.set_trace()
+# log_images_per_step()
 
 wandb.config.val_split = 0.1
 wandb.config.batch_size = 10
@@ -167,4 +186,4 @@ print("Training")
 earlystopper = EarlyStopping(patience=wandb.config.patience, verbose=wandb.config.verbose)
 checkpointer = ModelCheckpoint(os.path.join(wandb.run.dir, 'model-dsbowl2018-1.h5'), verbose=1, save_best_only=True)
 results = model.fit(X_train, Y_train, validation_split=wandb.config.val_split, batch_size=wandb.config.batch_size, epochs=wandb.config.epochs, 
-                    callbacks=[earlystopper, checkpointer, WandbCallback()])
+                    callbacks=[earlystopper, checkpointer, log_images_per_step(), WandbCallback()])
