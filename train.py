@@ -28,6 +28,8 @@ import tensorflow as tf
 import wandb
 from wandb.keras import WandbCallback
 
+wandb.init()
+
 # Set some parameters
 IMG_WIDTH = 128
 IMG_HEIGHT = 128
