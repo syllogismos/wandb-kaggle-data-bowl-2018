@@ -85,3 +85,54 @@ wandb: Verifying uploaded files... verified!
 wandb: Synced https://app.wandb.ai/syllogismos/kaggle-data-science-bowl-2018/runs/4kcu8duf
 ```
 
+```
+wandb: Waiting for wandb process to finish, PID 84625
+wandb: Program ended.
+wandb: Run summary:
+wandb:       mean_iou 0.7422491321911662
+wandb:           loss 0.08380086232551295
+wandb:   val_mean_iou 0.7450126258294973
+wandb:       val_loss 0.0756254298473472
+wandb: Run history:
+wandb:   val_mean_iou ▁▁▁▂▃▄▅▅▆▆▆▇▇▇▇█████
+wandb:           loss █▅▄▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       mean_iou ▁▁▁▂▃▄▅▅▆▆▆▇▇▇▇█████
+wandb:       val_loss █▆▄▂▂▂▂▁▂▁▁▁▁▁▁▁▁▁▁▁
+wandb:          epoch ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Waiting for final file modifications.
+wandb: Syncing files in wandb/run-20180619_154604-eyegic7r:
+wandb:   wandb-metadata.json
+wandb:   wandb-debug.log
+wandb:   model-dsbowl2018-1.h5
+wandb:   config.yaml
+wandb:   model-best.h5
+wandb:
+wandb: Verifying uploaded files... verified!
+wandb: Synced https://app.wandb.ai/syllogismos/kaggle-data-science-bowl-2018/runs/eyegic7r
+```
+
+```
+wandb: Waiting for wandb process to finish, PID 11681
+wandb: Program ended.
+wandb: Run summary:
+wandb:       val_loss 0.07321353884997653
+wandb:   val_mean_iou 0.7602148456359977
+wandb:       mean_iou 0.7578663706384092
+wandb:           loss 0.0780772963788972
+wandb: Run history:
+wandb:       mean_iou ▁▁▁▂▄▄▅▆▆▆▇▇▇▇▇█████
+wandb:       val_loss █▅▃▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:   val_mean_iou ▁▁▂▃▄▅▅▆▆▆▇▇▇▇▇█████
+wandb:          epoch ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb:           loss █▅▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: Waiting for final file modifications.
+wandb: Syncing files in wandb/run-20180619_161431-ym4us3xm:
+wandb:   model-best.h5
+wandb:   wandb-metadata.json
+wandb:   config.yaml
+wandb:   model-dsbowl2018-1.h5
+wandb:   wandb-debug.log
+wandb:
+wandb: Verifying uploaded files... verified!
+wandb: Synced https://app.wandb.ai/syllogismos/kaggle-data-science-bowl-2018/runs/ym4us3xm
+```
