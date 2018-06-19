@@ -143,7 +143,7 @@ model.summary()
 
 
 
-Print("Training")
+print("Training")
 # Fit model
 earlystopper = EarlyStopping(patience=5, verbose=1)
 checkpointer = ModelCheckpoint(os.path.join(wandb.run.dir, 'model-dsbowl2018-1.h5'), verbose=1, save_best_only=True)
