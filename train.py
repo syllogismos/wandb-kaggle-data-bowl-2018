@@ -173,7 +173,7 @@ class log_images_per_step(Callback):
         # wandb.log({"examples": []})
         # wandb.log({"examples": []})
 
-pdb.set_trace()
+# pdb.set_trace()
 # log_images_per_step()
 
 wandb.config.val_split = 0.1
