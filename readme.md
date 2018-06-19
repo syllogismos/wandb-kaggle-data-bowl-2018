@@ -47,7 +47,15 @@ You can get your free wandb account by signing up here https://app.wandb.ai/
 And run `wandb login` from your command line to setup wandb in your machine. On normal machine it automatically authorises your machine by opening your browser and making you login, on a headless machine it will ask you to enter your API key that you can find in your profile.
 
 
-# Experiments
+# Setting up your Experiment
+
+You can initialise wandb in the experiment directory by doing this
+```
+wandb init
+```
+It asks you to create the name of the experiment in the wandb dashboard. All the wandb metadata, and the experiment data you log through wandb commands will be stored in this directory. And after the experiment is run, it will be uploaded to your dashboard.
+
+It also tracks what commit you are on when you ran your script. I think this is very useful, when multiple people are working on the same repository and trying out various changes, it gets harder to track what gives you the best results. I wish this is even more strict, as in wandb should force you to checkin all the files before you run an experiment.
 
 
 
