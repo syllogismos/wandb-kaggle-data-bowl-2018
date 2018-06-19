@@ -161,11 +161,11 @@ class log_images_per_step(Callback):
     def on_epoch_end(self, epoch, logs={}):
         x = X_train[train_id]
         # print(x.shape)
-        y = Y_train[train_id].astype(np.uint8)
+        y = Y_train[train_id].astype(np.uint8)*255
         # print(y.shape)
         y_pred = self.model.predict(x[np.newaxis,:])
         # print(y_pred.shape)
-        y_pred_t=(y_pred > 0.5).astype(np.uint8)
+        y_pred_t=(y_pred > 0.5).astype(np.uint8)*255
         # print(y_pred_t.shape)
         wandb.log({"examples": [wandb.Image(x, caption="x"),
                                 wandb.Image(y, caption="y"),
@@ -173,7 +173,7 @@ class log_images_per_step(Callback):
         # wandb.log({"examples": []})
         # wandb.log({"examples": []})
 
-# pdb.set_trace()
+pdb.set_trace()
 # log_images_per_step()
 
 wandb.config.val_split = 0.1
